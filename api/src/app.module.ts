@@ -5,7 +5,7 @@ import { TransactionsModule } from 'src/modules/transactions/transactions.module
 
 @Module({
   imports: [
-    // MongooseModule.forRoot(process.env.MONGODB_URL),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     BlockModule,
     TransactionsModule,
   ],
