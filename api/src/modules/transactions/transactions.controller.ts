@@ -17,14 +17,14 @@ export class TransactionsController {
     @Res() res: Response,
     @Query() queries: GetTransactionsQueriesDto,
   ) {
-    const transactions = await this.transactionsService.getTransactions(
-      queries,
-    );
+    const { transactions, numberOfTransactions } =
+      await this.transactionsService.getTransactions(queries);
 
     const latestBlockNumber = this.blockService.getLatestBlockNumber();
 
     res.json({
       transactions,
+      numberOfTransactions,
       latestBlockNumber,
     });
   }

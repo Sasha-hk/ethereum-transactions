@@ -38,6 +38,11 @@ export class TransactionsService {
         name: 'asc',
       });
 
-    return transactions;
+    const numberOfTransactions = await this.transactionModel.count({});
+
+    return {
+      transactions,
+      numberOfTransactions,
+    };
   }
 }

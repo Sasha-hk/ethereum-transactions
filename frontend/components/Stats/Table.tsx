@@ -1,8 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, FC } from 'react';
+import { useRecoilState } from 'recoil';
 
-export const Table = () => {
+import { transactionsState } from '../../state/transactions';
+import { fetchTransactions } from '../../api/transactions';
+
+export const Table: FC<{ className?: string }> = ({ className }) => {
+  const [transactions, setTransactions] = useRecoilState(transactionsState);
+
+  useEffect(() => {
+    fetchTransactions(setTransactions);
+  }, [])
+
   return (
-    <div className='overflow-x-auto'>
+    <div className={ 'overflow-x-auto ' + className }>
       <table>
         <thead>
           <tr>
@@ -18,46 +28,22 @@ export const Table = () => {
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-          </tr>
+          {
+            transactions.transactions.map((transaction) => {
+              return (
+                <tr key={transaction.hash}>
+                  <td className='truncate'>{ parseInt(transaction.blockNumber, 16) }</td>
+                  <td className='truncate'>{ transaction.hash }</td>
+                  <td className='truncate'>{ transaction.from }</td>
+                  <td className='truncate'>{ transaction.to }</td>
+                  <td className='truncate'>{ parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16) }</td>
+                  <td className='truncate'>{ transaction.to}</td>
+                  <td className='truncate'>{ parseFloat(transaction.value) * 2.0 * Math.PI}</td>
+                  <td className='truncate'>date</td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     </div>

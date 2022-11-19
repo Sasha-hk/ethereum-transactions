@@ -4,7 +4,6 @@ export const Filter = () => {
   return (
     <div className='mb-5 flex items-center'>
       <div className='
-        overflow-auto
         inline-flex
         space-x-2
         border-gray-200

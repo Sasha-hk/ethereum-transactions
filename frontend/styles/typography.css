@@ -29,8 +29,6 @@ h5 {
 }
 
 table {
-  /* width: auto; */
-  overflow: hidden;
   table-layout: fixed;
   border-collapse: collapse;
   border-radius: 7px;
@@ -47,6 +45,7 @@ table td {
 }
 
 table th, table td {
+  max-width: 300px;
 }
 
 table tr:nth-child(odd) {
