@@ -1,18 +1,13 @@
-import { useEffect, FC } from 'react';
-import { useRecoilState } from 'recoil';
+import { FC } from 'react';
 
-import { transactionsState } from '../../state/transactions';
-import { fetchTransactions } from '../../api/transactions';
+import { TransactionStateI } from '../../state/transactions';
 
-export const Table: FC<{ className?: string }> = ({ className }) => {
-  const [transactions, setTransactions] = useRecoilState(transactionsState);
-
-  useEffect(() => {
-    fetchTransactions(setTransactions);
-  }, [])
-
+export const Table: FC<{
+  className?: string,
+  transactions: TransactionStateI,
+}> = ({ className, transactions }) => {
   return (
-    <div className={ 'overflow-x-auto ' + className }>
+    <div className={'overflow-x-auto ' + className}>
       <table>
         <thead>
           <tr>
@@ -32,21 +27,21 @@ export const Table: FC<{ className?: string }> = ({ className }) => {
             transactions.transactions.map((transaction) => {
               return (
                 <tr key={transaction.hash}>
-                  <td className='truncate'>{ parseInt(transaction.blockNumber, 16) }</td>
+                  <td className='truncate'>{parseInt(transaction.blockNumber, 16)}</td>
                   <td className='truncate'>
                     <a
                       href={'https://etherscan.io/tx/' + transaction.hash}
                       target="_blank"
                       className='text-blue-500 underline'
                     >
-                      { transaction.hash }
+                      {transaction.hash}
                     </a>
-                    </td>
-                  <td className='truncate'>{ transaction.from }</td>
-                  <td className='truncate'>{ transaction.to }</td>
-                  <td className='truncate'>{ parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16) }</td>
-                  <td className='truncate'>{ transaction.to}</td>
-                  <td className='truncate'>{ parseFloat(transaction.value) * 2.0 * Math.PI}</td>
+                  </td>
+                  <td className='truncate'>{transaction.from}</td>
+                  <td className='truncate'>{transaction.to}</td>
+                  <td className='truncate'>{parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16)}</td>
+                  <td className='truncate'>{transaction.to}</td>
+                  <td className='truncate'>{parseFloat(transaction.value) * 2.0 * Math.PI}</td>
                   <td className='truncate'>date</td>
                 </tr>
               )

@@ -45,7 +45,7 @@ table td {
 }
 
 table th, table td {
-  max-width: 300px;
+  max-width: 140px;
 }
 
 table tr:nth-child(odd) {
