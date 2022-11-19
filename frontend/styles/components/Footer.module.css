@@ -1,0 +1,23 @@
+.footer {
+  @apply
+  bg-primary-900
+  text-text-revert
+    flex
+    items-center;
+
+  width: 100%;
+  height: 57px;
+}
+
+/* MD / Tablets */
+@media only screen and (max-width: theme('screens.md.max')) {
+  .footer {
+    height: auto;
+    padding: 20px 0;
+    flex-direction: column;
+  }
+
+  .footer > div > span:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

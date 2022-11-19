@@ -1,26 +1,39 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@config "../tailwind.config.js";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './typography.css';
+
+/* Containers */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.container-fluid {
+  max-width: none;
+}
+.container-heading {
+  margin-top: 100px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* 2Xl / TV */
+@media only screen and (max-width: theme('screens.2xl.max')) {
 }
 
-* {
-  box-sizing: border-box;
+/* XL / Desktop */
+@media only screen and (max-width: theme('screens.xl.max')) {
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+/* LG / Laptop */
+@media only screen and (max-width: theme('screens.lg.max')) {
+}
+
+/* MD / Tablets */
+@media only screen and (max-width: theme('screens.md.max')) {
+}
+
+/* SM / Phone */
+@media only screen and (max-width: theme('screens.sm.max')) {
 }

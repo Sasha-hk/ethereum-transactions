@@ -1,0 +1,106 @@
+* {
+  font-family: theme('fontFamily.base');
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+  font-weigth: theme('titles.weight');
+}
+h1 {
+  font-size: theme('titles.h1');
+  margin: 40px 0 10px;
+}
+h2 {
+  font-size: theme('titles.h2');
+  margin: 2.5rem 0 0.1rem 0;
+  box-sizing: content-box;
+}
+h3 {
+  font-size: theme('titles.h3');
+  margin: 30px 0 5px;
+}
+h4 {
+  font-size: theme('titles.h4');
+  margin: 25px 0 2px;
+}
+h5 {
+  font-size: theme('titles.h5');
+  margin: 10px 0 0;
+}
+
+table {
+  /* width: auto; */
+  overflow: hidden;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-radius: 7px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+table th {
+  @apply bg-primary text-text-revert px-3 py-1 font-light;
+}
+
+table td {
+  @apply px-3 py-1 font-light;
+}
+
+table th, table td {
+}
+
+table tr:nth-child(odd) {
+  background: #F1F1F1;
+}
+table tr:nth-child(even) {
+  background: #FBFBFB;
+}
+
+
+table th:not(:last-child),
+table td:not(:last-child) {
+  border-right: 1px solid white;
+}
+
+
+/* 2Xl / TV */
+@media only screen and (max-width: theme('screens.2xl.max')) {
+  html,
+  body {}
+}
+
+/* XL / Desktop */
+@media only screen and (max-width: theme('screens.xl.max')) {
+  html,
+  body {}
+}
+
+/* LG / Laptop */
+@media only screen and (max-width: theme('screens.lg.max')) {
+  html,
+  body {}
+
+  .container {
+    @apply px-4;
+  }
+}
+
+/* MD / Tablets */
+@media only screen and (max-width: theme('screens.md.max')) {
+  html,
+  body {
+    font-size: 16px;
+  }
+}
+
+/* SM / Phone */
+@media only screen and (max-width: theme('screens.sm.max')) {
+  html,
+  body {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
