@@ -37,7 +37,7 @@ export const Filter = () => {
         border
         rounded-lg
         p-1
-        xl:mr-3
+        2xl:mr-3
       '>
         <input
           className='px-2 outline-none'

@@ -4,6 +4,7 @@ import * as fakeUa from 'fake-useragent';
 
 import { BlockSchema } from 'src/schemas/block.schema';
 import { TransactionSchema } from 'src/schemas/transaction.schema';
+import { sleep } from 'src/utils/sleep';
 
 const Block = model('User', BlockSchema);
 const Transaction = model('Transaction', TransactionSchema);
@@ -22,11 +23,11 @@ export async function initDB() {
 
   if (dbTransactions.length === 0) {
     console.log('Starting to download blocks from etherscan');
-    await fetchBlocks({ count: 0 });
+    await loadBlocks({ count: 0 });
   }
 }
 
-async function fetchBlocks({
+async function loadBlocks({
   count,
   number,
 }: {
@@ -35,6 +36,10 @@ async function fetchBlocks({
 }) {
   if (count == countOfInitBlocks) {
     return;
+  }
+
+  if (count % 5 === 0) {
+    await sleep(1000);
   }
 
   // @ts-ignore
@@ -52,10 +57,10 @@ async function fetchBlocks({
   console.log('Save block:', block.data.result.number);
 
   // Save transactions to database
-  await Transaction.insertMany(block.data.result.transactions);
+  Transaction.insertMany(block.data.result.transactions);
 
   // Save block to DB
-  await Block.create(block.data);
+  Block.create(block.data.result);
 
   // Create previous block number
   const previousBlockNumber = (
@@ -63,5 +68,5 @@ async function fetchBlocks({
   ).toString(16);
 
   // Fetch next block
-  await fetchBlocks({ count: count + 1, number: previousBlockNumber });
+  await loadBlocks({ count: count + 1, number: previousBlockNumber });
 }
