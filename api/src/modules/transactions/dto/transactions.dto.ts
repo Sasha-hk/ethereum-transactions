@@ -4,11 +4,7 @@ import { Type } from 'class-transformer';
 export class GetTransactionsQueriesDto {
   @IsString()
   @IsOptional()
-  from: string;
-
-  @IsString()
-  @IsOptional()
-  to: string;
+  address: string;
 
   @IsString()
   @IsOptional()

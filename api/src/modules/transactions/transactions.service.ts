@@ -17,8 +17,8 @@ export class TransactionsService {
     query: Exclude<GetTransactionsQueriesDto, 'limit' | 'skip'>,
   ) {
     const conditions = Object.keys({
-      from: query.from,
-      to: query.to,
+      from: query.address,
+      to: query.address,
       transactionId: query.transactionId,
       blockNumber: query.blockNumber,
     }).reduce((result, key) => {
