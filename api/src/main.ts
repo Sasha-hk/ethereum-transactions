@@ -6,6 +6,8 @@ import { initDB } from 'src/init-database';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const PORT = process.env.API_PORT || 3000;
+
   const app = await NestFactory.create(AppModule);
 
   await initDB();
@@ -14,7 +16,7 @@ async function bootstrap() {
   app.enableCors();
   app.use(cookieParser());
 
-  await app.listen(3000);
+  await app.listen(PORT);
 }
 
 bootstrap();
