@@ -41,7 +41,7 @@ export const Table: FC<{
                   <td className='truncate'>{transaction.to}</td>
                   <td className='truncate'>{parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16)}</td>
                   <td className='truncate'>{transaction.to}</td>
-                  <td className='truncate'>{parseFloat(transaction.value) * 2.0 * Math.PI}</td>
+                  <td className='truncate'>{transaction.value}</td>
                   <td className='truncate'>date</td>
                 </tr>
               )

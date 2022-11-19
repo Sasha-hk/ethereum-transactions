@@ -50,7 +50,6 @@ export const Pagination: FC<{
   useEffect(() => {
     loadPage(limit * page, limit);
   }, [page]);
-  console.log(numberOfItems);
 
   const setPagination = (page: number) => {
     setPage(page);
