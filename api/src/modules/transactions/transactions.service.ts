@@ -19,19 +19,28 @@ export class TransactionsService {
     const conditionsList = {
       from: query.address,
       to: query.address,
-      transactionId: query.transactionId,
+      hash: query.transactionId,
       blockNumber: query.blockNumber,
     };
 
-    const conditions = Object.keys(conditionsList).reduce((result, key) => {
+    const conditions: Array<any> = [];
+    Object.keys(conditionsList).forEach((key) => {
       if (conditionsList[key]) {
-        result[key] = query[key];
+        const r = {};
+        r[key] = query[key];
+
+        conditions.push(r);
       }
-      return result;
     }, {});
 
     const transactions = await this.transactionModel
-      .find(conditions)
+      .find(
+        conditions.length
+          ? {
+              $or: conditions,
+            }
+          : {},
+      )
       .skip(query.skip || 0)
       .limit(query.limit || 14)
       .sort({
