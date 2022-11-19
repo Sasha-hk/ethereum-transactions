@@ -3,10 +3,14 @@ import { Controller, Get, Query, Res } from '@nestjs/common';
 import { TransactionsService } from 'src/modules/transactions/transactions.service';
 import { GetTransactionsQueriesDto } from 'src/modules/transactions/dto/transactions.dto';
 import { Response } from 'express';
+import { BlockService } from 'src/modules/blocks/blocks.service';
 
 @Controller('transactions')
 export class TransactionsController {
-  constructor(private readonly transactionsService: TransactionsService) {}
+  constructor(
+    private readonly transactionsService: TransactionsService,
+    private readonly blockService: BlockService,
+  ) {}
 
   @Get()
   async getTransactions(
@@ -17,6 +21,11 @@ export class TransactionsController {
       queries,
     );
 
-    res.json(transactions);
+    const latestBlockNumber = this.blockService.getLatestBlockNumber();
+
+    res.json({
+      transactions,
+      latestBlockNumber,
+    });
   }
 }

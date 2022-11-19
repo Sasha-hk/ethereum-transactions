@@ -16,19 +16,19 @@ export class TransactionsService {
   async getTransactions(
     query: Exclude<GetTransactionsQueriesDto, 'limit' | 'skip'>,
   ) {
-    const conditions = Object.keys({
+    const conditionsList = {
       from: query.address,
       to: query.address,
       transactionId: query.transactionId,
       blockNumber: query.blockNumber,
-    }).reduce((result, key) => {
-      if (query[key]) {
+    };
+
+    const conditions = Object.keys(conditionsList).reduce((result, key) => {
+      if (conditionsList[key]) {
         result[key] = query[key];
       }
       return result;
     }, {});
-
-    console.log(conditions);
 
     const transactions = await this.transactionModel
       .find(conditions)
