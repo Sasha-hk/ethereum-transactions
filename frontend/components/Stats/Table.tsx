@@ -1,4 +1,5 @@
 import { timeStamp } from 'console';
+import loadConfig from 'next/dist/server/config';
 import { FC, useEffect, useState } from 'react';
 
 import { getBlock } from '../../api/block';
@@ -66,7 +67,7 @@ export const Table: FC<{
                   <td className='truncate'>{ transaction.from }</td>
                   <td className='truncate'>{ transaction.to }</td>
                   <td className='truncate'>{ parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16) }</td>
-                  <td className='truncate'>{ timestamps[i] }</td>
+                  <td className='truncate'>{ timestamps[i] || '...' }</td>
                   <td className='truncate'>{ parseInt(transaction.value, 16) / 1000000000 / 1000000000 }</td>
                   <td className='truncate'>{ parseInt(transaction.gasPrice, 16) * parseInt(transaction.gas, 16) / 1_000_000_000 / 1_000_000_000 }</td>
                 </tr>
