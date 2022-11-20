@@ -27,11 +27,13 @@ export class TransactionsService {
     Object.keys(conditionsList).forEach((key) => {
       if (conditionsList[key]) {
         const r = {};
-        r[key] = query[key];
+        r[key] = conditionsList[key];
 
         conditions.push(r);
       }
     }, {});
+
+    console.log(conditions);
 
     const transactions = await this.transactionModel
       .find(

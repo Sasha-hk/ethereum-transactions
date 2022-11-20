@@ -28,7 +28,13 @@ export const Filter = () => {
   }
 
   return (
-    <div className='mb-5 flex items-center'>
+    <div className='
+      mb-5
+      flex
+      items-center
+      sm:flex-col
+      sm:items-start
+    '>
       <div className='
         inline-flex
         space-x-2
@@ -38,9 +44,20 @@ export const Filter = () => {
         rounded-lg
         p-1
         2xl:mr-3
+        sm:mb-4
       '>
         <input
-          className='px-2 outline-none'
+          className='
+            px-2
+            outline-none
+            2xl:w-50
+            sm:w-28
+          '
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              filterTransactions();
+            }
+          }}
           type="text"
           placeholder='Search...'
           value={inputValue}
@@ -50,7 +67,6 @@ export const Filter = () => {
         <svg width="1" height="32" viewBox="0 0 1 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="1" height="32" fill="#F1F1F1"/>
         </svg>
-
 
         <select
           name=""
@@ -74,6 +90,5 @@ export const Filter = () => {
         </svg>
       </button>
     </div>
-
   )
 }
