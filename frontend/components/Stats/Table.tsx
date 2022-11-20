@@ -37,12 +37,12 @@ export const Table: FC<{
                       {transaction.hash}
                     </a>
                   </td>
-                  <td className='truncate'>{transaction.from}</td>
-                  <td className='truncate'>{transaction.to}</td>
-                  <td className='truncate'>{parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16)}</td>
-                  <td className='truncate'>{transaction.to}</td>
-                  <td className='truncate'>{transaction.value}</td>
-                  <td className='truncate'>Fee</td>
+                  <td className='truncate'>{ transaction.from }</td>
+                  <td className='truncate'>{ transaction.to }</td>
+                  <td className='truncate'>{ parseInt(transactions.latestBlockNumber, 16) - parseInt(transaction.blockNumber, 16) }</td>
+                  <td className='truncate'>{ transaction.to }</td>
+                  <td className='truncate'>{ parseInt(transaction.value, 16) / 1_000_000_000 / 1_000_000_000 }</td>
+                  <td className='truncate'>{ parseInt(transaction.gasPrice, 16) * parseInt(transaction.gas, 16) / 1_000_000_000 / 1_000_000_000 }</td>
                 </tr>
               )
             })

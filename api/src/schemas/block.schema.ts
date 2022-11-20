@@ -59,8 +59,8 @@ export class Block {
   @Prop()
   totalDifficulty: string;
 
-  @Prop()
-  transactions: Array<any>;
+  // @Prop()
+  // transactions: Array<any>;
 
   @Prop()
   transactionsRoot: string;

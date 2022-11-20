@@ -1,8 +1,9 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
+import { connect } from 'mongoose';
 
-import { initDB } from 'src/init-database';
+import { blocksFetcher, initDB } from 'src/init-database';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -10,7 +11,14 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
+  // Connect to database
+  await connect(process.env.MONGODB_URL);
+
+  // Initialize blocks
   await initDB();
+
+  // Blocks fetcher
+  blocksFetcher();
 
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
   app.enableCors();
