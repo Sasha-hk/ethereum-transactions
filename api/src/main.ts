@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 import { connect } from 'mongoose';
 
-import { blocksFetcher, initDB } from 'src/init-database';
+import { blocksFetcher, initDB } from 'src/database';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
