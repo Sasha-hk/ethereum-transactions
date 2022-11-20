@@ -17,7 +17,6 @@ export class TransactionsController {
     @Res() res: Response,
     @Query() queries: GetTransactionsQueriesDto,
   ) {
-    console.log(queries);
     const { transactions, numberOfTransactions } =
       await this.transactionsService.getTransactions(queries);
 

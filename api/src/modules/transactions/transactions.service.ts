@@ -33,8 +33,6 @@ export class TransactionsService {
       }
     }, {});
 
-    console.log(conditions);
-
     const transactions = await this.transactionModel
       .find(
         conditions.length
