@@ -4,7 +4,7 @@ function generateButtons(from: number, to: number, setPagination: any) {
   const pageButtons: Array<any> = [];
 
   for (
-    let i = from; i <= to; i++
+    let i = from; i < to; i++
   ) {
     let pageButtonClasses: Array<string> = ['w-12', 'h-12', 'flex', 'items-center', 'justify-center', 'rounded-lg'];
 
@@ -44,10 +44,24 @@ export const Pagination: FC<{
   loadPage,
 }) => {
   const [page, setPage] = useState(0);
-  const countOfButtons = 5;
+  const [countOfButtons, setCountOfButtons] = useState(5);
   const maxPages = Math.floor(numberOfItems / limit);
 
+  const defineCountOfButtons = () => {
+    if (window.innerWidth <= 480) {
+      setCountOfButtons(3);
+    } else {
+      setCountOfButtons(5);
+    }
+  }
+
   useEffect(() => {
+    defineCountOfButtons()
+
+    window.addEventListener('resize', () => {
+      defineCountOfButtons()
+    })
+
     loadPage(limit * page, limit);
   }, [page]);
 

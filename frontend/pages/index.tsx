@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { fetchTransactions } from '../api/transactions';
+import { getTransactions } from '../api/transactions';
 
 import { Layout } from '../components/Layout';
 import { Filter } from '../components/Stats/Filter';
@@ -12,7 +12,7 @@ export default function Stats() {
   const [transactions, setTransactions] = useRecoilState(transactionsState);
 
   useEffect(() => {
-    fetchTransactions(setTransactions);
+    getTransactions(setTransactions);
   }, []);
 
   return (
@@ -24,7 +24,7 @@ export default function Stats() {
           limit={14}
           numberOfItems={transactions.numberOfTransactions}
           loadPage={(skip, limit) => {
-            fetchTransactions(setTransactions, { limit, skip });
+            getTransactions(setTransactions, { limit, skip });
           }}
         />
       </section>

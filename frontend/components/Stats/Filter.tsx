@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRecoilState } from 'recoil';
-import { fetchTransactions } from '../../api/transactions';
+import { getTransactions } from '../../api/transactions';
 import { transactionsState } from '../../state/transactions';
 
 export const Filter = () => {
@@ -24,7 +24,7 @@ export const Filter = () => {
       }
     }
 
-    fetchTransactions(setTransactions, conditions);
+    getTransactions(setTransactions, conditions);
   }
 
   return (

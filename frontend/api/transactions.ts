@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = process.env.API_URL!;
 
-export const fetchTransactions = (setTransactions: any, params?: {
+export const getTransactions = (setTransactions: any, params?: {
   limit?: number,
   skip?: number,
   address?: string,
