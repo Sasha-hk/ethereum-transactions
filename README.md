@@ -25,7 +25,7 @@ ETHERSCAN_CALLS_PER_SECOND=5
 INIT_BLOCK_COUNT=1000
 ```
 
-Create .env.local at [frontend](./frontend/) directory:
+Create .env.local in the [frontend](./frontend/) directory:
 
 ```txt
 API_URL="http://localhost:3030"
