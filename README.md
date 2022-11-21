@@ -1,6 +1,6 @@
 # Ethereum transactions list
 
-Used technologies:
+Technologies used:
 
 - Front-end (Next.js, React.js, TailwindCSS, PostCSS)
 - Back-end (Nest.js, Mongoose)
