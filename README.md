@@ -53,4 +53,4 @@ yarn dev
 
 Done
 
-Open this [link](http://localhost:3031).
+Open this [link](http://localhost:3031)
