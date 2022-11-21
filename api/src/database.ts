@@ -47,7 +47,7 @@ export async function blocksFetcher() {
         await fetchBlocks(latestBlockNumber);
       }
 
-      await sleep(5000);
+      await sleep(Number(process.env.ETHERSCAN_CALLS_PER_SECOND));
     } catch (e: any) {
       console.log(e);
     }

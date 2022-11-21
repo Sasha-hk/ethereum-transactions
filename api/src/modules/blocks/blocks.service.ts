@@ -47,7 +47,7 @@ export class BlockService {
 
       this.latestBlockNumber = block.data.result;
 
-      await sleep(5000);
+      await sleep(Number(process.env.ETHERSCAN_CALLS_PER_SECOND));
     }
   }
 
