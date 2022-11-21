@@ -38,6 +38,7 @@ lerna-debug.log*
 # Env files
 .env.dev
 .env.prod
+.env.local
 
 # Docker volume
 data/

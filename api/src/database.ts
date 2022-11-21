@@ -19,7 +19,12 @@ export async function initDB() {
 
   if (dbTransactions.length === 0) {
     console.log('Starting to download blocks from etherscan');
-    await loadBlocks({ count: 0 });
+
+    try {
+      await loadBlocks({ count: 0 });
+    } catch (e: any) {
+      console.log(e);
+    }
   }
 }
 
@@ -33,15 +38,19 @@ export async function blocksFetcher() {
   let checkExists: any;
 
   while (true) {
-    latestBlockNumber = (await getBlockNumber()).data.result;
+    try {
+      latestBlockNumber = (await getBlockNumber()).data.result;
 
-    checkExists = await Block.findOne({ number: latestBlockNumber });
+      checkExists = await Block.findOne({ number: latestBlockNumber });
 
-    if (!checkExists) {
-      await fetchBlocks(latestBlockNumber);
+      if (!checkExists) {
+        await fetchBlocks(latestBlockNumber);
+      }
+
+      await sleep(5000);
+    } catch (e: any) {
+      console.log(e);
     }
-
-    await sleep(5000);
   }
 }
 
